@@ -57,6 +57,8 @@
             android:hint="Enter Content To Pe Put In QR Code..."
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
-            android:textSize="20sp"></EditText>
+            android:textSize="20sp"
+            android:focusable="true">
+        </EditText>
     </LinearLayout>
 </ScrollView>

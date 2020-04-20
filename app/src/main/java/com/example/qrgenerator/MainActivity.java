@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
         final ImageView image = findViewById(R.id.image);
         final EditText text = findViewById(R.id.text);
+        text.requestFocus();
         final Button savebtn = findViewById(R.id.savebtn);
         final Button sharebtn  = findViewById(R.id.sharebtn);
         final String savePath = Environment.getExternalStorageDirectory().getPath() + "/MyQRCode/";
