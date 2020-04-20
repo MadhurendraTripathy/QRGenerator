@@ -5,3 +5,4 @@ Adapts to the changes and dynamically for every change in the text you make inst
 Supports Direct Sharing any other ThirdParty App.
 Also Supports HighQuality Image Saving on Local Storage.
 Totally Advertisement Free.
+Addition of QR Code Scanning is Still Under Progress.
