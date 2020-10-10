@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
-        }
+        requestPermissions();
         final ImageView image = findViewById(R.id.image);
         final EditText text = findViewById(R.id.text);
         text.requestFocus();
@@ -95,28 +93,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Boolean success;
                 String result;
-                //if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-                try {
-
-                    //Toast.makeText(MainActivity.this, ""+savePath, Toast.LENGTH_LONG).show();
-                    String inputValue = text.getText().toString().trim();
-                    WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
-                    Display display = manager.getDefaultDisplay();
-                    Point point = new Point();
-                    display.getSize(point);
-                    int width = point.x;
-                    int height = point.y;
-                    int smallerDimension = width < height ? width : height;
-                    smallerDimension = smallerDimension * 3 / 4;
-                    QRGEncoder qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
-                    Bitmap bitmap;
-                    bitmap = qrgEncoder.encodeAsBitmap();
-                    image.setImageBitmap(bitmap);
-                    success = QRGSaver.save(savePath, inputValue, bitmap, QRGContents.ImageType.IMAGE_JPEG);
-                    result = success ? "Image Saved to \n"+savePath : "Image Not Saved";
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(MainActivity.this, "Storage Permission Required to Save the QR", Toast.LENGTH_SHORT).show();
+                    requestPermissions();
+                }
+                else if (text.getText().toString().trim().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Enter Data", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    try {
+                        //Toast.makeText(MainActivity.this, ""+savePath, Toast.LENGTH_LONG).show();
+                        String inputValue = text.getText().toString().trim();
+                        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+                        Display display = manager.getDefaultDisplay();
+                        Point point = new Point();
+                        display.getSize(point);
+                        int width = point.x;
+                        int height = point.y;
+                        int smallerDimension = width < height ? width : height;
+                        smallerDimension = smallerDimension * 3 / 4;
+                        QRGEncoder qrgEncoder = new QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
+                        Bitmap bitmap;
+                        bitmap = qrgEncoder.encodeAsBitmap();
+                        image.setImageBitmap(bitmap);
+                        success = QRGSaver.save(savePath, inputValue, bitmap, QRGContents.ImageType.IMAGE_JPEG);
+                        result = success ? "Image Saved to \n" + savePath : "Image Not Saved";
+                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -139,5 +144,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    void requestPermissions(){
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+        }
     }
 }

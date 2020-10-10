@@ -19,7 +19,7 @@
             android:foregroundGravity="center"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_launcher_background" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/colorAccent"
-            android:hint="Enter Content To Pe Put In QR Code..."
+            android:hint="Enter Data to be put in QR Code..."
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="20sp"
