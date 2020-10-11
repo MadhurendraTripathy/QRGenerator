@@ -1,64 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#000000">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:background="#000000"
+    android:layout_gravity="center"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/branding_top"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <ImageView
-            android:layout_margin="16dp"
-            android:id="@+id/image"
-            android:layout_gravity="center"
-            android:foregroundGravity="center"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/ic_launcher_background" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center">
-            <Button
-                android:id="@+id/savebtn"
-                android:layout_margin="16dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SAVE"
-                android:textColor="#000000">
-            </Button>
-            <Button
-                android:id="@+id/sharebtn"
-                android:layout_margin="16dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SHARE"
-                android:textColor="#000000">
-            </Button>
-        </LinearLayout>
+        android:text="QR Code"
+        android:textSize="50sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/alice"
+        android:textStyle="italic"
+        android:transitionName="top_to_bottom_animation"/>
+    <ImageView
+        android:id="@+id/qr_image"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:layout_width="275dp"
+        android:layout_height="275dp"
+        android:src="@drawable/icon"
+        android:transitionName="fade_in"></ImageView>
+    <TextView
+        android:id="@+id/branding_bottom"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/branding"
+        android:textSize="35sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/alice"
+        android:textStyle="italic"
+        android:transitionName="bottom_to_top_animation">
+    </TextView>
 
-        <EditText
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/colorAccent"
-            android:hint="Enter Data to be put in QR Code..."
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
-            android:textSize="20sp"
-            android:focusable="true">
-        </EditText>
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

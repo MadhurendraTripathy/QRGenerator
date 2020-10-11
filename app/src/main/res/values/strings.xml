@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">QRGenerator</string>
+    <string name="app_name">QRGenerator&amp;Scanner</string>
+    <string name="branding">Generator &amp; Scanner</string>
 </resources>
